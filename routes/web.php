@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/fes', [FesController::class, 'index']);
