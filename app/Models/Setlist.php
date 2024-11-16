@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fes extends Model
+class Setlist extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'body', 'fes_name', 'hashtag', 'date', 'user_id',
+        'song_name', 'position', 'artist_id',
     ];
-
-    public function artists()
-    {
-        return $this->hasMany(Artist::class);
-    }
+    
 }

@@ -19,3 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/fes', [FesController::class, 'index']);
+Route::get('/fes/{fes}', [FesController::class, 'show']); 

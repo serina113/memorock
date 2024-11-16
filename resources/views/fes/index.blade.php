@@ -10,7 +10,7 @@
     <ul>
         @foreach($fesPosts as $post)
             <li>
-                <h2>{{ $post->title }}</h2>
+                <a href="/fes/{{ $post->id }}">{{ $post->title }}</a>
                 <p>{{ $post->body }}</p>
                 <p>フェス名: {{ $post->fes_name }}</p>
                 <p>ハッシュタグ: {{ $post->hashtag }}</p>
