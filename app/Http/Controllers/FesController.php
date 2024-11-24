@@ -71,7 +71,7 @@ class FesController extends Controller
             }
         }
 
-        return redirect()->route('fes.index')->with('success', '投稿が完了しました');
+        return redirect()->route('fes.index');
             
     }
 
@@ -84,7 +84,7 @@ class FesController extends Controller
 
         $fes->delete();
 
-        return redirect()->route('fes.index')->with('success', 'フェス情報が削除されました！');
+        return redirect()->route('fes.index');
     }
 
 }
