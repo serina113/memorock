@@ -1,11 +1,8 @@
-<!-- resources/views/fes/index.blade.php -->
+<x-app-layout>
+    <x-slot name="header">
+        <h1>{{ $fes->fes_name }}</h1>
+    </x-slot>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Fes 投稿一覧</title>
-</head>
-<body>
     <div class="container">
         <h1>{{ $fes->title }}</h1>
         <p>{{ $fes->body }}</p>
@@ -28,5 +25,7 @@
             </div>
         @endforeach
     </div>
-</body>
-</html>
+    <div class="edit">
+        <a href="/fes/{{ $fes->id }}/edit">編集</a>
+    </div>
+</x-app-layout>

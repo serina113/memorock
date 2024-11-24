@@ -8,13 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Fes extends Model
 {
     use HasFactory;
+    
 
     protected $fillable = [
-        'title', 'body', 'fes_name', 'hashtag', 'date', 'user_id',
+        'title','fes_name', 'body', 'hashtag', 'date', 'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function artists()
     {
         return $this->hasMany(Artist::class);
+    }
+
+    function getPaginateByLimit(int $limit_count = 5)
+    {
+        return $this::with('fes') -> orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

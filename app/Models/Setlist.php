@@ -13,4 +13,8 @@ class Setlist extends Model
         'song_name', 'position', 'artist_id',
     ];
     
+    public function artist()
+    {
+        return $this->belongsto(Artist::class);
+    }
 }

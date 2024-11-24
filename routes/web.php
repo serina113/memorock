@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FesController;
-
-
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +13,26 @@ use App\Http\Controllers\FesController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/dashboard', function (){
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::controller(FesController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('fes.index');
+    Route::post('/fes', 'store')->name('fes.store');
+    Route::get('/fes/create', 'create')->name('fes.create');
+    Route::get('/fes/{fes}', 'show')->name('fes.show');
+    Route::put('/fes/{fes}', 'update')->name('fes.update');
+    Route::delete('/fes/{fes}', 'delete')->name('fes.delete');
+    Route::get('/fes/{fes}/edit', 'edit')->name('fes.edit');
 });
-Route::get('/fes', [FesController::class, 'index']);
-Route::get('/fes/{fes}', [FesController::class, 'show']); 
+Route::middleware('auth')->group(function (){
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+});
+
+require __DIR__.'/auth.php';
