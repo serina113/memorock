@@ -45,30 +45,31 @@
         let artistIndex = 0;
 
         function addArtist() {
-            const artistContainer = document.getElementById('artist-container');
-            const artistHtml = `
-                <div class="artist-block mb-4">
-                    <h4>アーティスト ${artistIndex + 1}</h4>
-                    <div class="form-group">
-                        <label for="artists[${artistIndex}][name]">名前</label>
-                        <input type="text" name="artists[${artistIndex}][name]" class="form-control" placeholder="アーティスト名を入力" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="artists[${artistIndex}][body]">感想</label>
-                        <textarea name="artists[${artistIndex}][body]" class="form-control" rows="3" placeholder="感想を入力"></textarea>
-                    </div>
+    const artistContainer = document.getElementById('artist-container');
+    const artistHtml = `
+        <div class="artist-block mb-4">
+            <h4>アーティスト ${artistIndex + 1}</h4>
+            <div class="form-group">
+                <label for="artists[${artistIndex}][name]">名前</label>
+                <input type="text" name="artists[${artistIndex}][name]" class="form-control" placeholder="アーティスト名を入力" required>
+            </div>
+            <div class="form-group">
+                <label for="artists[${artistIndex}][body]">感想</label>
+                <textarea name="artists[${artistIndex}][body]" class="form-control" rows="3" placeholder="感想を入力"></textarea>
+            </div>
 
-                    <h5>セットリスト登録</h5>
-                    <div class="setlist-container" data-index="${artistIndex}">
-                        <button type="button" class="btn btn-secondary mb-2" onclick="addSetlist(${artistIndex})">
-                            セットリスト追加
-                        </button>
-                    </div>
-                </div>
-            `;
-            artistContainer.insertAdjacentHTML('beforeend', artistHtml);
-            artistIndex++;
-        }
+            <h5>セットリスト登録</h5>
+            <div class="setlist-container" data-index="${artistIndex}">
+                <!-- セットリスト登録ボタンをここに追加 -->
+                <button type="button" class="btn btn-secondary mb-2 setlist-button" onclick="addSetlist(${artistIndex})">
+                    セットリスト追加
+                </button>
+            </div>
+        </div>
+    `;
+    artistContainer.insertAdjacentHTML('beforeend', artistHtml);
+    artistIndex++;
+}
 
         function addSetlist(artistIndex) {
             const setlistContainer = document.querySelector(`.setlist-container[data-index='${artistIndex}']`);
