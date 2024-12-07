@@ -11,7 +11,7 @@ class Fes extends Model
     
 
     protected $fillable = [
-        'title','fes_name', 'body', 'hashtag', 'date', 'user_id',
+        'title','fes_name', 'body', 'hashtag', 'date', 'user_id', 'image_path',
     ];
 
     public function user()

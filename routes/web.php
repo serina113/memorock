@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TwitterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,8 @@ Route::controller(FesController::class)->middleware(['auth'])->group(function(){
     Route::put('/fes/{fes}', 'update')->name('fes.update');
     Route::delete('/fes/{fes}', 'delete')->name('fes.delete');
     Route::get('/fes/{fes}/edit', 'edit')->name('fes.edit');
+    Route::get('/fes', [FesController::class, 'index'])->name('fes.index');
+
 });
 Route::middleware('auth')->group(function (){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,5 +37,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 });
+
+Route::get('/auth/redirect', [TwitterController::class, 'redirectToProvider'])->name('twitter.redirect');
+Route::get('/auth/callback', [TwitterController::class, 'handleProviderCallback'])->name('twitter.callback');
+Route::post('/post-tweet', [TwitterController::class, 'postTweet'])->name('twitter.post');
 
 require __DIR__.'/auth.php';
