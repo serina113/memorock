@@ -5,7 +5,17 @@
 
     <!-- Twitter共有ボタン -->
     <div class="mt-8 text-center">
-        <a href="{{ route('twitter.redirect') }}">Twitterで認証</a>
+    <form method="GET" action="{{ route('twitter.redirect') }}">
+        <input type="hidden" name="redirect_url" value="{{ route('fes.show', $fes->id) }}">
+        <button type="submit">Twitterで共有</button>
+    </form>
+
+    <form action="{{ route('twitter.post') }}" method="POST">
+            @csrf
+            <textarea name="text" placeholder="ツイート内容を入力"></textarea>
+            <button type="submit">投稿</button>
+    </form>
+
     </div>
     
     <div class="content">

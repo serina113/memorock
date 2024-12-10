@@ -23,12 +23,14 @@ class FesController extends Controller
         $fesPosts = $fes->get();
         return view('fes.index', compact('fesPosts'));
     }
+
     public function show(Fes $fes)
     {
     // Fesに関連するArtistsと、それぞれのSetlistsもEager Loadingで取得
         $fes->load(['artists.setlists']);
         return view('fes.show', compact('fes'));
     }
+
     public function create() 
     {
         return view('fes.create'); 
@@ -38,11 +40,9 @@ class FesController extends Controller
     {
     // 投稿をIDで取得
     $post = Fes::with('artists.setlists')->findOrFail($id);
-
     // ビューに渡す
     return view('fes.edit', compact('post'));
     }
-
 
     public function update(Request $request, $id)
     {
@@ -57,7 +57,6 @@ class FesController extends Controller
             'date' => $request->post['date'],
         ]);
 
-    
         // 現在のアーティストIDを取得
         $existingArtistIds = $post->artists()->pluck('id')->toArray();
         $submittedArtistIds = array_column($request->post['artists'], 'id');
